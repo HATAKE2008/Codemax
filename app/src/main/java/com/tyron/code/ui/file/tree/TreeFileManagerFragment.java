@@ -408,7 +408,7 @@ public class TreeFileManagerFragment extends Fragment {
             + "}\n"
             + "\n"
             + "android {\n"
-            + "    compileSdkVersion 34\n"
+            + "    compileSdkVersion 35\n"
             + "    namespace "
             + "\""
             + packageName
@@ -416,7 +416,7 @@ public class TreeFileManagerFragment extends Fragment {
             + "\n"
             + "    defaultConfig {\n"
             + "        minSdkVersion 21\n"
-            + "        targetSdkVersion 34\n"
+            + "        targetSdkVersion 35\n"
             + "        versionCode 1\n"
             + "        versionName \"1.0\"\n"
             + "    }\n"

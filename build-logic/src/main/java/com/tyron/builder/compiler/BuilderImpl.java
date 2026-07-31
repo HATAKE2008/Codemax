@@ -84,6 +84,8 @@ public abstract class BuilderImpl<T extends Module> implements Builder<T> {
         throw e;
       }
       mTasksRan.add(task);
+      System.gc();
+      Runtime.getRuntime().runFinalization();
     }
     mTasksRan.forEach(Task::clean);
 

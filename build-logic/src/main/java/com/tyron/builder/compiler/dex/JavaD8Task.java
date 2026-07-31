@@ -189,6 +189,7 @@ public class JavaD8Task extends Task<JavaModule> {
       File output = new File(getModule().getBuildDirectory(), "bin");
       builder.setMode(CompilationMode.DEBUG);
       builder.setOutput(output.toPath(), OutputMode.DexIndexed);
+      freeMemory();
       D8.run(builder.build());
 
     } catch (com.android.tools.r8.CompilationFailedException e) {
@@ -227,7 +228,14 @@ public class JavaD8Task extends Task<JavaModule> {
             .setMode(CompilationMode.RELEASE)
             .setOutput(output.toPath(), OutputMode.DexIndexed)
             .build();
+    freeMemory();
     D8.run(command);
+  }
+
+  private static void freeMemory() {
+    System.gc();
+    Runtime.getRuntime().runFinalization();
+    System.gc();
   }
 
   @VisibleForTesting

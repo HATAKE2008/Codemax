@@ -538,7 +538,7 @@ public class WizardFragment extends Fragment {
         } catch (IOException e) {
             return;
         }
-        String targetSdk = "31";
+        String targetSdk = "35";
         String minSdk = mMinSdkText.getText().toString()
                 .substring("API".length() + 1, "API".length() + 3); // at least 2 digits
         int minSdkInt = Integer.parseInt(minSdk);
@@ -602,7 +602,12 @@ public class WizardFragment extends Fragment {
                 "API 28: Android 9.0 (Pie)",
                 "API 29: Android 10.0 (Q)",
                 "API 30: Android 11.0 (R)",
-                "API 31: Android 12.0 (S)"
+                "API 31: Android 12.0 (S)",
+                "API 32: Android 12L (Sv2)",
+                "API 33: Android 13.0 (Tiramisu)",
+                "API 34: Android 14.0 (UpsideDownCake)",
+                "API 35: Android 15.0 (VanillaIceCream)",
+                "API 36: Android 16.0 (Baklava)"
         );
     }
 
