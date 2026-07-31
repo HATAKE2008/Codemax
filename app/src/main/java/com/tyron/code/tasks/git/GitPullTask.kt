@@ -77,9 +77,9 @@ object GitPullTask {
           ErrorOutput.ShowError(error, context)
         } else {
           Toast.makeText(context, context.getString(R.string.pull_completed), Toast.LENGTH_SHORT).show()
-        }
-      }
     }
   }
+}
+
 }
 }

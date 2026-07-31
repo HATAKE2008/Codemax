@@ -76,9 +76,9 @@ object GitFetchTask {
           ErrorOutput.ShowError(error, context)
         } else {
           Toast.makeText(context, context.getString(R.string.fetch_completed), Toast.LENGTH_SHORT).show()
-        }
-      }
     }
   }
+}
+
 }
 }
