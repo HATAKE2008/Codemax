@@ -44,7 +44,7 @@ import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import java.util.concurrent.Executors;
 import org.apache.commons.io.FileUtils;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class ProjectSheetFragment extends BottomSheetDialogFragment {
 
@@ -181,7 +181,7 @@ public class ProjectSheetFragment extends BottomSheetDialogFragment {
                                   } else {
                                     path =
                                         Environment.getExternalStorageDirectory()
-                                            + "/CodeAssistProjects";
+                                            + "/CodemaxProjects";
                                   }
 
                                   File oldDir = project.getRootFile();
@@ -439,7 +439,7 @@ public class ProjectSheetFragment extends BottomSheetDialogFragment {
               if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 path = requireContext().getExternalFilesDir("/Projects").getAbsolutePath();
               } else {
-                path = Environment.getExternalStorageDirectory() + "/CodeAssistProjects";
+                path = Environment.getExternalStorageDirectory() + "/CodemaxProjects";
                 String fileName = ".nomedia";
                 File nomediaFile = new File(path, fileName);
                 try {

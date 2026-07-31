@@ -1,5 +1,5 @@
 // Generated from
-// C:/Users/bounc/AndroidStudioProjects/CodeAssist/app/src/main/java/com/tyron/code/ui/editor/language/groovy\GroovyLexer.g4 by ANTLR 4.9.1
+// C:/Users/bounc/AndroidStudioProjects/Codemax/app/src/main/java/com/tyron/code/ui/editor/language/groovy\GroovyLexer.g4 by ANTLR 4.9.1
 package com.tyron.code.language.groovy;
 
 import java.util.ArrayDeque;

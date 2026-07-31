@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Executors;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class IconManagerFragment extends Fragment {
 

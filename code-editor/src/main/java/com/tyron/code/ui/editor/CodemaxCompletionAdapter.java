@@ -15,7 +15,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import org.jetbrains.kotlin.com.intellij.util.ReflectionUtil;
 
-public class CodeAssistCompletionAdapter extends EditorCompletionAdapter {
+public class CodemaxCompletionAdapter extends EditorCompletionAdapter {
 
   public void setItems(EditorAutoCompletion window, List<CompletionItem> items) {
     try {

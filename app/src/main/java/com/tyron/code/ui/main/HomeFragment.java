@@ -38,8 +38,8 @@ import com.tyron.common.util.AndroidUtilities;
 import com.tyron.completion.progress.ProgressManager;
 import java.io.File;
 import java.util.Objects;
-import org.codeassist.unofficial.BuildConfig;
-import org.codeassist.unofficial.R;
+import codemax.rm.BuildConfig;
+import codemax.rm.R;
 
 public class HomeFragment extends Fragment {
 
@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                       path = requireContext().getExternalFilesDir("Projects").getAbsolutePath();
                     } else {
-                      path = Environment.getExternalStorageDirectory() + "/CodeAssistProjects";
+                      path = Environment.getExternalStorageDirectory() + "/CodemaxProjects";
                     }
 
                     File project = new File(path, name);
@@ -370,7 +370,7 @@ public class HomeFragment extends Fragment {
 
   private void savePath() {
     String path =
-        Environment.getExternalStorageDirectory().getAbsolutePath() + "/CodeAssistProjects";
+        Environment.getExternalStorageDirectory().getAbsolutePath() + "/CodemaxProjects";
     File file = new File(path);
     if (file.exists()) {
     } else {

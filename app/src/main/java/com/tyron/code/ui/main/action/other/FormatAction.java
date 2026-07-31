@@ -8,7 +8,7 @@ import com.tyron.actions.AnActionEvent;
 import com.tyron.actions.CommonDataKeys;
 import com.tyron.code.ui.editor.impl.text.rosemoe.CodeEditorFragment;
 import com.tyron.fileeditor.api.FileEditor;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class FormatAction extends AnAction {
 

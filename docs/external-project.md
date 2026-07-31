@@ -3,15 +3,15 @@
 In this file, you will find infomation about how to setup or open project from external file system (out of app sandbox enviroment) in code assist pro.
 
 > [!NOTE]
-> Following, may or may not be able to apply to any other code assist flavours (or code assist download from other sources than the [Wadamzmail/CodeAssist-Unofficial](https://github.com/Wadamzmail/CodeAssist-Unofficial)).
+> Following, may or may not be able to apply to any other code assist flavours (or code assist download from other sources than the [HATAKE2008/Codemax](https://github.com/HATAKE2008/Codemax)).
 
 ## Setup of external project in Code Assist Pro.
 
-`TL;DR`: Setup project like normally, Export the project as zip file. Delete The project from code assist. Unzip the export project In settings, toggle the custom project. From file explorer. Open the project folder in codeassist pro app.
+`TL;DR`: Setup project like normally, Export the project as zip file. Delete The project from code assist. Unzip the export project In settings, toggle the custom project. From file explorer. Open the project folder in codemax pro app.
 
 [Vidoe Toutrial](https://youtube.com/shorts/3buaY_T0KTM?si=Asg8eGacg0xj8Gyh)
 
-1) Download code assist pro from [Wadamzmail/CodeAssist-Unofficial](https://github.com/Wadamzmail/CodeAssist-Unofficial).
+1) Download code assist pro from [HATAKE2008/Codemax](https://github.com/HATAKE2008/Codemax).
 
 2) Create a new project in code assit pro. Enter your details like appname, apppackagename, language, minsdk and don;t touch save location path, let it be in app sandbox enviroment.
 

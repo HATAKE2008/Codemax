@@ -19,7 +19,7 @@ public class FileContentFixer {
    * The injected identifier before completion, this is done so it so there will always be a text at
    * the current position of the caret.
    */
-  public static final String INJECTED_IDENT = "CodeAssistRulezzzz";
+  public static final String INJECTED_IDENT = "CodemaxRulezzzz";
 
   private static final Set<TokenKind> VALID_MEMBER_SELECTION_TOKENS =
       ImmutableSet.of(

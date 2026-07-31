@@ -2,7 +2,7 @@ package com.tyron.kotlin_completion.compiler;
 
 import com.tyron.builder.project.api.KotlinModule;
 import com.tyron.kotlin.completion.core.model.KotlinEnvironment;
-import com.tyron.kotlin.completion.core.resolve.CodeAssistAnalyzerFacadeForJVM;
+import com.tyron.kotlin.completion.core.resolve.CodemaxAnalyzerFacadeForJVM;
 import java.io.Closeable;
 import java.nio.file.Path;
 import java.util.Collection;
@@ -101,10 +101,10 @@ public class CompilationEnvironment implements Closeable {
       Collection<KtFile> filesToAnalyze, Collection<KtFile> sourcePath) {
     CliBindingTrace trace = new CliBindingTrace();
     MutableModuleContext moduleContext =
-        CodeAssistAnalyzerFacadeForJVM.createModuleContext(
+        CodemaxAnalyzerFacadeForJVM.createModuleContext(
             getEnvironment().getProject(), getEnvironment().getConfiguration(), true);
     ComponentProvider container =
-        CodeAssistAnalyzerFacadeForJVM.INSTANCE.createContainer(
+        CodemaxAnalyzerFacadeForJVM.INSTANCE.createContainer(
             trace,
             moduleContext,
             filesToAnalyze,

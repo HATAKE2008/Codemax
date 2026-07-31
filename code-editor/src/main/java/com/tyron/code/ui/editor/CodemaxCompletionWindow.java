@@ -18,9 +18,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import org.jetbrains.kotlin.com.intellij.util.ReflectionUtil;
 
-public class CodeAssistCompletionWindow extends EditorAutoCompletion {
+public class CodemaxCompletionWindow extends EditorAutoCompletion {
 
-  private static final String TAG = CodeAssistCompletionWindow.class.getSimpleName();
+  private static final String TAG = CodemaxCompletionWindow.class.getSimpleName();
 
   private final CodeEditor mEditor;
   private CompletionLayout mLayout;
@@ -34,7 +34,7 @@ public class CodeAssistCompletionWindow extends EditorAutoCompletion {
    *
    * @param editor Target editor
    */
-  public CodeAssistCompletionWindow(CodeEditor editor) {
+  public CodemaxCompletionWindow(CodeEditor editor) {
     super(editor);
 
     mEditor = editor;

@@ -14,8 +14,8 @@ import com.google.android.material.transition.platform.MaterialSharedAxis
 import net.lingala.zip4j.ZipFile
 import net.lingala.zip4j.progress.ProgressMonitor
 import org.apache.commons.io.FileUtils
-import org.codeassist.unofficial.R
-import org.codeassist.unofficial.databinding.FragmentProgressSheetDialogBinding
+import codemax.rm.R
+import codemax.rm.databinding.FragmentProgressSheetDialogBinding
 import com.tyron.code.util.TaskExecutor.executeAsyncProvideError
 import java.io.File
 import java.io.InputStream
@@ -111,7 +111,7 @@ class ImportProjectProgressFragment : BottomSheetDialogFragment() {
         val path: String = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             requireContext().getExternalFilesDir("/Projects")!!.absolutePath
         } else {
-            Environment.getExternalStorageDirectory().toString() + "/CodeAssistProjects"                                    
+            Environment.getExternalStorageDirectory().toString() + "/CodemaxProjects"                                    
         }
 
         val projectDir = File(path)

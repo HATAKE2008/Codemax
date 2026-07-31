@@ -27,7 +27,7 @@ public class ScopeHelper {
     // imports.
     // https://parent.docs.oracle.com/en/java/javase/11/docs/api/jdk.compiler/com.sun.source/tree/Scope.html
 
-    // CodeAssist changed: allow top level scopes, but not imports they are handled in
+    // Codemax changed: allow top level scopes, but not imports they are handled in
     // ImportCompletionProvider
     return scopes.subList(0, scopes.size() - 2);
   }

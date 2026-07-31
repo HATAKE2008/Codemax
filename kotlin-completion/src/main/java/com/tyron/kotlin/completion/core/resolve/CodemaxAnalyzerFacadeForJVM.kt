@@ -42,7 +42,7 @@ data class AnalysisResultWithProvider(val analysisResult: AnalysisResult, val co
     }
 }
 
-object CodeAssistAnalyzerFacadeForJVM {
+object CodemaxAnalyzerFacadeForJVM {
     fun analyzeSources(
         environment: KotlinCoreEnvironment,
         filesToAnalyze: Collection<KtFile>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CodeAssist</string>
+    <string name="app_name">codemax</string>
     <string name="hello_world">Olá, mundo!</string>
     <item name="paste" type="string">Colar</item>
     <item name="copy" type="string">Copiar</item>
@@ -167,9 +167,9 @@
     <string name="menu_preview_layout">Prévia do layout</string>
 
     <string name="project_manager_alpha_notice_title">Aviso do desenvolvimento Alpha</string>
-    <string name="project_manager_alpha_notice">CodeAssist ainda está em alpha,
+    <string name="project_manager_alpha_notice">Codemax ainda está em alpha,
         você pode se deparar com travamentos, bugs e funções incompletas.\nVocê
-        pode reportar esses problemas em https://github.com/tyron12233/CodeAssist/issues</string>
+        pode reportar esses problemas em https://github.com/HATAKE2008/Codemax/issues</string>
     <string name="project_manager_save_location_title">Salvar o caminho de saída</string>
     <string name="project_manager_permission_denied">Permissão negada</string>
     <string name="project_manager_button_request_again">Requesitar novamente</string>
@@ -179,9 +179,9 @@
     <string name="project_manager_button_use_internal">Usar o armazenamento internk</string>
     <string name="project_manager_permission_rationale">O aplicativo precisa da permissão do armazenamento
         para poder salvar os arquivos dos módulos para não serem deletados após você desinstalar
-        o CodeAssist. Alternativamente você pode escolher salvar os arquivos do módulo no armazenamento interno do aplicativo.</string>
+        o Codemax. Alternativamente você pode escolher salvar os arquivos do módulo no armazenamento interno do aplicativo.</string>
     <string name="project_manager_android11_notice">Os projetos serão salvos no armazenamento interno do aplicativo.
-        Faça backup dos seus módulos antes de desinstalar o CodeAssist.</string>
+        Faça backup dos seus módulos antes de desinstalar o Codemax.</string>
     <string name="project_manager_projects">Projetos</string>
     <string name="project_manager_empty">Projetos estão vazios</string>
     <string name="project_manager_create_project">Criar um novo módulo</string>

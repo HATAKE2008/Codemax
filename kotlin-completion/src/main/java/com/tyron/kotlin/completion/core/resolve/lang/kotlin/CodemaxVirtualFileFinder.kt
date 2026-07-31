@@ -2,7 +2,7 @@ package com.tyron.kotlin.completion.core.resolve.lang.kotlin
 
 import com.tyron.builder.project.api.KotlinModule
 import com.tyron.kotlin.completion.core.model.KotlinEnvironment
-import com.tyron.kotlin.completion.core.resolve.lang.java.structure.CodeAssistJavaElementUtil
+import com.tyron.kotlin.completion.core.resolve.lang.java.structure.CodemaxJavaElementUtil
 import org.jetbrains.kotlin.cli.jvm.index.JavaRoot
 import org.jetbrains.kotlin.cli.jvm.index.JvmDependenciesIndex
 import org.jetbrains.kotlin.com.intellij.openapi.project.Project
@@ -21,7 +21,7 @@ import org.jetbrains.kotlin.serialization.deserialization.MetadataPackageFragmen
 import org.jetbrains.kotlin.serialization.deserialization.builtins.BuiltInSerializerProtocol
 import java.io.InputStream
 
-class CodeAssistVirtualFileFinder(
+class CodemaxVirtualFileFinder(
     private val javaProject: KotlinModule,
     private val scope: GlobalSearchScope
 ): VirtualFileFinder() {
@@ -109,7 +109,7 @@ class CodeAssistVirtualFileFinder(
         return null
 //        val fqName = javaClass.fqName ?: return null
 //
-//        val classId = CodeAssistJavaElementUtil.computeClassId((javaClass as EclipseJavaClassifier<*>).binding) ?: return null
+//        val classId = CodemaxJavaElementUtil.computeClassId((javaClass as EclipseJavaClassifier<*>).binding) ?: return null
 //        if (classId == null) return null
 //
 //        var file = findVirtualFileWithHeader(classId)
@@ -126,13 +126,13 @@ class CodeAssistVirtualFileFinder(
     }
 }
 
-class CodeAssistVirtualFileFinderFactory(private val project: KotlinModule) :
+class CodemaxVirtualFileFinderFactory(private val project: KotlinModule) :
     VirtualFileFinderFactory {
 
     override fun create(project: Project, module: ModuleDescriptor) =
         VirtualFileFinderFactory.getInstance(project).create(project, module)
 
-    override fun create(scope: GlobalSearchScope): VirtualFileFinder = CodeAssistVirtualFileFinder(project, scope)
+    override fun create(scope: GlobalSearchScope): VirtualFileFinder = CodemaxVirtualFileFinder(project, scope)
 }
 
 fun <T: Any> T.check(predicate: (T) -> Boolean): T? = if (predicate(this)) this else null

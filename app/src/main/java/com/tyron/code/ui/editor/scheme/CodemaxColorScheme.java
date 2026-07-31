@@ -19,17 +19,17 @@ import org.apache.commons.io.FileUtils;
 
 /** An editor color scheme that can be serialized and deserialized as json */
 @Keep
-public class CodeAssistColorScheme extends EditorColorScheme {
+public class CodemaxColorScheme extends EditorColorScheme {
 
   @WorkerThread
-  public static CodeAssistColorScheme fromFile(@NonNull File file) throws IOException {
+  public static CodemaxColorScheme fromFile(@NonNull File file) throws IOException {
     String contents = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-    CodeAssistColorScheme scheme =
+    CodemaxColorScheme scheme =
         new GsonBuilder()
             .excludeFieldsWithoutExposeAnnotation()
             .setPrettyPrinting()
             .create()
-            .fromJson(contents, CodeAssistColorScheme.class);
+            .fromJson(contents, CodemaxColorScheme.class);
     if (scheme == null) {
       throw new IOException("Unable to parse scheme file.");
     }
@@ -50,7 +50,7 @@ public class CodeAssistColorScheme extends EditorColorScheme {
   @SerializedName("colors")
   private Map<String, String> mNameToColorMap;
 
-  public CodeAssistColorScheme() {
+  public CodemaxColorScheme() {
     for (Integer id : Keys.sIdToNameMap.keySet()) {
       int color = getColor(id);
       setColor(id, color);

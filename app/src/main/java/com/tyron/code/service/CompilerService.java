@@ -35,8 +35,8 @@ import com.tyron.completion.progress.ProgressIndicator;
 import com.tyron.completion.progress.ProgressManager;
 import java.io.File;
 import java.lang.ref.WeakReference;
-import org.codeassist.unofficial.BuildConfig;
-import org.codeassist.unofficial.R;
+import codemax.rm.BuildConfig;
+import codemax.rm.R;
 
 public class CompilerService extends Service {
 
@@ -226,7 +226,7 @@ public class CompilerService extends Service {
 
     PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
     wakeLock =
-        pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "CodeAssist:CompileLock");
+        pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Codemax:CompileLock");
     // Acquire with timeout to prevent battery drain
     wakeLock.acquire(10 * 60 * 1000L);
 

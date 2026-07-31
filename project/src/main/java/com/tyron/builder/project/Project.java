@@ -38,11 +38,11 @@ public class Project {
     mModules = new LinkedHashMap<>();
     mMainModule = new AndroidModuleImpl(new File(mRoot, mName));
 
-    File codeassist = new File(root, ".idea");
-    if (!codeassist.exists()) {
-      if (!codeassist.mkdirs()) {}
+    File codemax = new File(root, ".idea");
+    if (!codemax.exists()) {
+      if (!codemax.mkdirs()) {}
     }
-    mSettings = new ProjectSettings(new File(codeassist, "settings.json"));
+    mSettings = new ProjectSettings(new File(codemax, "settings.json"));
   }
 
   public Project(File root) {
@@ -51,11 +51,11 @@ public class Project {
     mModules = new LinkedHashMap<>();
     mMainModule = new AndroidModuleImpl(new File(mRoot, mName));
 
-    File codeassist = new File(root, ".idea");
-    if (!codeassist.exists()) {
-      if (!codeassist.mkdirs()) {}
+    File codemax = new File(root, ".idea");
+    if (!codemax.exists()) {
+      if (!codemax.mkdirs()) {}
     }
-    mSettings = new ProjectSettings(new File(codeassist, "settings.json"));
+    mSettings = new ProjectSettings(new File(codemax, "settings.json"));
   }
 
   public boolean isCompiling() {

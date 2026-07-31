@@ -51,7 +51,7 @@ import java.util.Map;
  * {@link com.tyron.viewbinding.tool.store.ResourceBundle} that can be persistent or converted to
  * LayoutBinder.
  *
- * CodeAssist note: Commented out/force-disabled Data Binding logic.
+ * Codemax note: Commented out/force-disabled Data Binding logic.
  * Also re-wrote [parseXml] and [parseOriginalXml] to allow for parsing directly
  * from an XML string.
  */
@@ -113,7 +113,7 @@ public final class LayoutFileParser {
     private static LayoutFileBundle parseOriginalXml(
             @NonNull final RelativizableFile originalFile, @NonNull final String pkg,
             @NonNull final String encoding, boolean isViewBindingEnabled,
-            @Nullable final String optionalFileContents) // CodeAssist added
+            @Nullable final String optionalFileContents) // Codemax added
             throws IOException {
         File original = originalFile.getAbsoluteFile();
         try {

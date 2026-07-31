@@ -3,7 +3,7 @@
 In this file, you will find information about, how to integrated git & github into code assist pro. 
 
 > [!NOTE]
-> This docs is specific for latest version of Code Assist Pro (Wadamzmail/CodeAssist-Unofficial).
+> This docs is specific for latest version of Code Assist Pro (HATAKE2008/Codemax).
 > 
 > This docs may or may not work for other code assist flavour.
 
@@ -13,10 +13,10 @@ In this file, you will find information about, how to integrated git & github in
 
 ## Overview
 
-There are three ways to use github with your code assist pro project. we will only discussed here, the one that integrates with codeassist pro directly...
+There are three ways to use github with your code assist pro project. we will only discussed here, the one that integrates with codemax pro directly...
 
 - Using github website to upload code.. (beginner friendly, non-standard way)
-- Using termux, git & codeassist pro.. (standard way, exact way we do on laptops & pc)
+- Using termux, git & codemax pro.. (standard way, exact way we do on laptops & pc)
 - Using code assist way.. (hard setup, but became easier overtime)
 
 ## Moveing your project from phone to cloud (GitHub)
@@ -56,7 +56,7 @@ As you have guess, uploading (pushing) your project to GitHub is hard task, and 
 
 Assume that you have already setup git credentials if not read above sections. 
 
-1. Open codeassist pro app & then in code assist pro open the project you wish to upload to github.
+1. Open codemax pro app & then in code assist pro open the project you wish to upload to github.
 
 2. Once you open desired project, you find yourself in ide. Now, click on the folder icon in top app bar. next to three dots icon.
 
@@ -169,4 +169,4 @@ Assume that, you already setup your project for git & github.
 
 ## Next Step
 
-Understand git and github more. [best-git-codeassist.md](best-git-codeassist.md)
+Understand git and github more. [best-git-codemax.md](best-git-codemax.md)

@@ -17,12 +17,12 @@ import org.jetbrains.kotlin.name.FqName;
 import org.jetbrains.kotlin.resolve.BindingTrace;
 import org.jetbrains.kotlin.resolve.lazy.KotlinCodeAnalyzer;
 
-public class CodeAssistJavaClassFinder extends AbstractJavaClassFinder {
+public class CodemaxJavaClassFinder extends AbstractJavaClassFinder {
 
   private KotlinModule module;
   private final JavaClassFinderImpl impl = new JavaClassFinderImpl();
 
-  public CodeAssistJavaClassFinder(KotlinModule module) {
+  public CodemaxJavaClassFinder(KotlinModule module) {
     this.module = module;
   }
 

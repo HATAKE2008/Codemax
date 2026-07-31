@@ -2,36 +2,36 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Preferences -->
-    <style name="Preference.CodeAssist" parent="Preference.Material">
-        <item name="android:layout">@layout/codeassist_preference</item>
+    <style name="Preference.Codemax" parent="Preference.Material">
+        <item name="android:layout">@layout/codemax_preference</item>
     </style>
     
-    <style name="Preference.CodeAssist.CheckBoxPreference" parent="Preference.CheckBoxPreference.Material">
-        <item name="android:layout">@layout/codeassist_preference</item>
+    <style name="Preference.Codemax.CheckBoxPreference" parent="Preference.CheckBoxPreference.Material">
+        <item name="android:layout">@layout/codemax_preference</item>
     </style>
 
-    <style name="Preference.CodeAssist.DialogPreference" parent="Preference.DialogPreference.Material">
-        <item name="android:layout">@layout/codeassist_preference</item>
+    <style name="Preference.Codemax.DialogPreference" parent="Preference.DialogPreference.Material">
+        <item name="android:layout">@layout/codemax_preference</item>
     </style>
 
-    <style name="Preference.CodeAssist.DialogPreference.EditTextPreference" parent="Preference.DialogPreference.EditTextPreference.Material">
-        <item name="android:layout">@layout/codeassist_preference</item>
+    <style name="Preference.Codemax.DialogPreference.EditTextPreference" parent="Preference.DialogPreference.EditTextPreference.Material">
+        <item name="android:layout">@layout/codemax_preference</item>
     </style>
 
-    <style name="Preference.CodeAssist.PreferenceScreen" parent="Preference.PreferenceScreen.Material">
-        <item name="android:layout">@layout/codeassist_preference</item>
+    <style name="Preference.Codemax.PreferenceScreen" parent="Preference.PreferenceScreen.Material">
+        <item name="android:layout">@layout/codemax_preference</item>
     </style>
 
-    <style name="Preference.CodeAssist.SwitchPreference" parent="Preference.SwitchPreference.Material">
-        <item name="android:layout">@layout/codeassist_preference_widget_material_switch</item>
+    <style name="Preference.Codemax.SwitchPreference" parent="Preference.SwitchPreference.Material">
+        <item name="android:layout">@layout/codemax_preference_widget_material_switch</item>
     </style>
 
-    <style name="Preference.CodeAssist.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material" tools:ignore="ResourceCycle">
-        <item name="widgetLayout">@layout/codeassist_preference_widget_material_switch</item>
-        <item name="android:layout">@layout/codeassist_preference</item>
+    <style name="Preference.Codemax.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material" tools:ignore="ResourceCycle">
+        <item name="widgetLayout">@layout/codemax_preference_widget_material_switch</item>
+        <item name="android:layout">@layout/codemax_preference</item>
     </style>
     
-    <style name="Widget.CodeAssist.CardView" parent="Widget.Material3.CardView.Elevated">
+    <style name="Widget.Codemax.CardView" parent="Widget.Material3.CardView.Elevated">
         <item name="cardCornerRadius">15dp</item>
         <item name="cardElevation">0dp</item>
         <item name="cardBackgroundColor">@color/md_theme_background</item>

@@ -112,7 +112,7 @@ abstract class KotlinCommonEnvironment(disposable: Disposable) {
                 registerService(CliLightClassGenerationSupport::class.java, it)
             }
 
-            registerService(JavaModuleResolver::class.java, CodeAssistKotlinModuleResolver())
+            registerService(JavaModuleResolver::class.java, CodemaxKotlinModuleResolver())
 
             val javaFileManager = ServiceManager.getService(this, JavaFileManager::class.java)
             (javaFileManager as KotlinCliJavaFileManagerImpl)

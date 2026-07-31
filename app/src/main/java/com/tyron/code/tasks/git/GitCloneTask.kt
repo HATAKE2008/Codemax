@@ -4,9 +4,9 @@ import android.os.Build
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import org.codeassist.unofficial.R
-import org.codeassist.unofficial.databinding.BaseTextinputLayoutBinding
-import org.codeassist.unofficial.databinding.LayoutDialogProgressBinding
+import codemax.rm.R
+import codemax.rm.databinding.BaseTextinputLayoutBinding
+import codemax.rm.databinding.LayoutDialogProgressBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.os.Environment
 import java.io.File
@@ -75,7 +75,7 @@ object GitCloneTask {
        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
        targetDir = File(ApplicationLoader.applicationContext.getExternalFilesDir("/Projects"), repoName)
        } else {  
-       targetDir = File(Environment.getExternalStorageDirectory().absolutePath + "/CodeAssistProjects"  , repoName)
+       targetDir = File(Environment.getExternalStorageDirectory().absolutePath + "/CodemaxProjects"  , repoName)
        }
        
        val progress = GitProgressMonitor(binding.progress, binding.message)

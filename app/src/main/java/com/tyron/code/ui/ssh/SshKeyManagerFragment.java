@@ -43,7 +43,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Executors;
 import org.apache.commons.io.FileUtils;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class SshKeyManagerFragment extends Fragment {
 
@@ -159,7 +159,7 @@ public class SshKeyManagerFragment extends Fragment {
         JSch jsch = new JSch();
         KeyPair keyPair = KeyPair.genKeyPair(jsch, KeyPair.RSA, 4096);
         keyPair.writePrivateKey(new FileOutputStream(privateKey));
-        keyPair.writePublicKey(new FileOutputStream(publicKey), "codeassist");
+        keyPair.writePublicKey(new FileOutputStream(publicKey), "codemax");
         keyPair.dispose();
 
       } catch (Exception e) {

@@ -14,8 +14,8 @@ import com.tyron.code.analyzer.DiagnosticTextmateAnalyzer;
 import com.tyron.code.language.EditorFormatter;
 import com.tyron.code.language.HighlightUtil;
 import com.tyron.code.language.xml.LanguageXML;
-import com.tyron.code.ui.editor.CodeAssistCompletionAdapter;
-import com.tyron.code.ui.editor.CodeAssistCompletionWindow;
+import com.tyron.code.ui.editor.CodemaxCompletionAdapter;
+import com.tyron.code.ui.editor.CodemaxCompletionWindow;
 import com.tyron.code.ui.editor.EditorViewModel;
 import com.tyron.code.ui.editor.NoOpTextActionWindow;
 import com.tyron.code.ui.project.ProjectManager;
@@ -48,7 +48,7 @@ import org.eclipse.lemminx.dom.DOMDocument;
 import org.eclipse.lemminx.dom.DOMNode;
 import org.eclipse.lemminx.dom.DOMParser;
 import org.jetbrains.kotlin.com.intellij.util.ReflectionUtil;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 //import io.github.rosemoe.sora.text.CharPosition;
 import io.github.rosemoe.sora.text.TextRange;
 import java.util.Objects;
@@ -81,7 +81,7 @@ public class CodeEditorView extends CodeEditor implements Editor {
   private EditorViewModel mViewModel;
 
   private final Paint mDiagnosticPaint;
-  private CodeAssistCompletionWindow mCompletionWindow;
+  private CodemaxCompletionWindow mCompletionWindow;
 
   public CodeEditorView(Context context) {
     this(DataContext.wrap(context), null);
@@ -132,8 +132,8 @@ public class CodeEditorView extends CodeEditor implements Editor {
   }
 
   private void init() {
-    mCompletionWindow = new CodeAssistCompletionWindow(this);
-    mCompletionWindow.setAdapter(new CodeAssistCompletionAdapter());
+    mCompletionWindow = new CodemaxCompletionWindow(this);
+    mCompletionWindow.setAdapter(new CodemaxCompletionAdapter());
     replaceComponent(EditorAutoCompletion.class, mCompletionWindow);
     replaceComponent(EditorTextActionWindow.class, new NoOpTextActionWindow(this));
   }

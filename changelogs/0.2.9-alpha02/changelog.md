@@ -1,4 +1,4 @@
-### CodeAssist v0.2.9 ALPHA02
+### Codemax v0.2.9 ALPHA02
 
 ### Added Drawable Manager 
 

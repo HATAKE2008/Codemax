@@ -1,8 +1,8 @@
 package com.tyron.kotlin.completion.core.resolve
 
 import com.tyron.builder.project.api.KotlinModule
-import com.tyron.kotlin.completion.core.resolve.lang.java.CodeAssistJavaClassFinder
-import com.tyron.kotlin.completion.core.resolve.lang.java.resolver.CodeAssistTraceBasedJavaResolverCache
+import com.tyron.kotlin.completion.core.resolve.lang.java.CodemaxJavaClassFinder
+import com.tyron.kotlin.completion.core.resolve.lang.java.resolver.CodemaxTraceBasedJavaResolverCache
 import org.jetbrains.kotlin.builtins.jvm.JvmBuiltIns
 import org.jetbrains.kotlin.builtins.jvm.JvmBuiltInsPackageFragmentProvider
 import org.jetbrains.kotlin.com.intellij.openapi.project.Project
@@ -85,7 +85,7 @@ fun createContainerForLazyResolveWithJava(
     configureJavaTopDownAnalysis(moduleContentScope, moduleContext.project, lookupTracker, languageVersionSettings)
 
     useImpl<JavaClassFinderImpl>()
-    useImpl<CodeAssistTraceBasedJavaResolverCache>()
+    useImpl<CodemaxTraceBasedJavaResolverCache>()
     useImpl<JavaSourceElementFactoryImpl>()
 
     useInstance(SyntheticJavaPartsProvider.EMPTY)

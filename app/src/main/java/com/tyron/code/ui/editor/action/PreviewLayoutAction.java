@@ -13,7 +13,7 @@ import com.tyron.code.ui.editor.impl.xml.LayoutEditor;
 import com.tyron.code.ui.editor.impl.xml.LayoutTextEditorFragment;
 import com.tyron.common.util.AndroidUtilities;
 import com.tyron.fileeditor.api.FileEditor;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class PreviewLayoutAction extends AnAction {
 

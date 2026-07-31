@@ -9,7 +9,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import com.tyron.common.SharedPreferenceKeys;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 import com.google.android.material.transition.MaterialSharedAxis;
 import androidx.annotation.Nullable;
 

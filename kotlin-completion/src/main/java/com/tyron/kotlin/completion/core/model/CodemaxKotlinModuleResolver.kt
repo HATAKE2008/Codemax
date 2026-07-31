@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.resolve.jvm.modules.JavaModuleResolver
 
-class CodeAssistKotlinModuleResolver: JavaModuleResolver {
+class CodemaxKotlinModuleResolver: JavaModuleResolver {
     override fun checkAccessibility(
         fileFromOurModule: VirtualFile?,
         referencedFile: VirtualFile,

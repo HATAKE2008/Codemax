@@ -43,10 +43,10 @@
         <item name="windowActionBar">false</item>
         
         <!-- preferences -->
-        <item name="preferenceScreenStyle">@style/Preference.CodeAssist.PreferenceScreen</item>
-        <item name="switchPreferenceCompatStyle">@style/Preference.CodeAssist.SwitchPreferenceCompat</item>
-        <item name="preferenceStyle">@style/Preference.CodeAssist</item>
-        <item name="editTextPreferenceStyle">@style/Preference.CodeAssist.DialogPreference.EditTextPreference</item>
-        <item name="dialogPreferenceStyle">@style/Preference.CodeAssist.DialogPreference</item>
+        <item name="preferenceScreenStyle">@style/Preference.Codemax.PreferenceScreen</item>
+        <item name="switchPreferenceCompatStyle">@style/Preference.Codemax.SwitchPreferenceCompat</item>
+        <item name="preferenceStyle">@style/Preference.Codemax</item>
+        <item name="editTextPreferenceStyle">@style/Preference.Codemax.DialogPreference.EditTextPreference</item>
+        <item name="dialogPreferenceStyle">@style/Preference.Codemax.DialogPreference</item>
     </style>    
 </resources>

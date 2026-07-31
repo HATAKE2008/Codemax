@@ -1,29 +1,25 @@
-# ⚠️ Project Discontinued
+# Codemax
 
->This repository is no longer maintained.
->Development has moved to a new repository:
->[CodeAssist-Pro](https://github.com/Wadamzmail/CodeAssist-Pro)
-
->Please visit the new repo for the latest code, releases, and issues.
+A javac APIs-based Android code editor, forked from CodeAssist.
 
 <p align='center'>
- <img width='300px%' height='300px' src='https://github.com/Wadamzmail/CodeAssist-Unofficial/blob/main/logo-dark.png#gh-dark-mode-only' >
-<img width='300px' height='300px' src='https://github.com/Wadamzmail/CodeAssist-Unofficial/blob/main/logo-light.png#gh-light-mode-only'>
+ <img width='300px%' height='300px' src='https://github.com/HATAKE2008/Codemax/blob/main/logo-dark.png#gh-dark-mode-only' >
+<img width='300px' height='300px' src='https://github.com/HATAKE2008/Codemax/blob/main/logo-light.png#gh-light-mode-only'>
 </p>
 
-<h2 align="center"><b>CodeAssist Pro</b></h2>
+<h2 align="center"><b>Codemax</b></h2>
 <p align="center">
-Forked of Official CodeAssist Version Alpha-0.2.9
+Forked of Official Codemax Version Alpha-0.2.9
 <p><br>
 
 <div align='center'>
 
 [![stability-alpha](https://img.shields.io/badge/stability-alpha-f4d03f.svg)](https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md#alpha)
-![Repository Size](https://img.shields.io/github/repo-size/Wadamzmail/CodeAssist-Unofficial)
-![CI](https://github.com/Wadamzmail/CodeAssist-Unofficial/actions/workflows/debug.yml/badge.svg)
-[![Total downloads](https://img.shields.io/github/downloads/Wadamzmail/CodeAssist-Unofficial/total)](https://github.com/Wadamzmail/CodeAssist-Unofficial/releases)
-![Commit Activity](https://img.shields.io/github/commit-activity/m/Wadamzmail/CodeAssist-Unofficial)
-<img src="https://img.shields.io/github/v/release/Wadamzmail/CodeAssist-Unofficial?include_prereleases&amp;label=latest%20release" alt="Latest release">
+![Repository Size](https://img.shields.io/github/repo-size/HATAKE2008/Codemax)
+![CI](https://github.com/HATAKE2008/Codemax/actions/workflows/debug.yml/badge.svg)
+[![Total downloads](https://img.shields.io/github/downloads/HATAKE2008/Codemax/total)](https://github.com/HATAKE2008/Codemax/releases)
+![Commit Activity](https://img.shields.io/github/commit-activity/m/HATAKE2008/Codemax)
+<img src="https://img.shields.io/github/v/release/HATAKE2008/Codemax?include_prereleases&amp;label=latest%20release" alt="Latest release">
 
   <h2>A javac APIs-based code editor that supports building Android apps.</h2>
 
@@ -95,7 +91,7 @@ Forked of Official CodeAssist Version Alpha-0.2.9
 
 <img style=" width: 100%;" src=".github/resources/images/hr.jpg">
 
-## CodeAssist Community
+## Codemax Community
 
 English-language chat in Telegram: https://t.me/codeassist_app
 
@@ -117,7 +113,7 @@ you find documentation under [docs](docs/) directory.
 
 # Special thanks
 
-- Tyron/CodeAssist (Official)
+- Tyron/Codemax (Official)
 
 - Rosemoe/CodeEditor 
 
@@ -133,4 +129,4 @@ you find documentation under [docs](docs/) directory.
 
 - Updated Templates By @SENPAi_203
 
-# CodeAssist-Unofficial
+# Codemax

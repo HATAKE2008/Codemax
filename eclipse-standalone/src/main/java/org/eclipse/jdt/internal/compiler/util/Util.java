@@ -57,7 +57,7 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeVariableBinding;
 import org.eclipse.jdt.internal.compiler.lookup.WildcardBinding;
 
 /**
- * CodeAssist changed: used alternatives for InputStream#readAllBytes since android does not
+ * Codemax changed: used alternatives for InputStream#readAllBytes since android does not
  * support it
  */
 public class Util implements SuffixConstants {

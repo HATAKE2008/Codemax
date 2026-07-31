@@ -5,7 +5,7 @@ import android.view.View;
 import io.github.rosemoe.sora.widget.component.DefaultCompletionLayout;
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
 
-public class CodeAssistCompletionLayout extends DefaultCompletionLayout {
+public class CodemaxCompletionLayout extends DefaultCompletionLayout {
 
   @Override
   public void onApplyColorScheme(EditorColorScheme colorScheme) {

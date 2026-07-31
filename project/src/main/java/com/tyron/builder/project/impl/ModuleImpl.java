@@ -48,12 +48,12 @@ public class ModuleImpl implements Module {
 
   @Override
   public void open() throws IOException {
-    File codeassist = new File(getProjectDir(), ".idea");
-    if (!codeassist.exists()) {
-      if (!codeassist.mkdirs()) {}
+    File codemax = new File(getProjectDir(), ".idea");
+    if (!codemax.exists()) {
+      if (!codemax.mkdirs()) {}
     }
 
-    File buildSettings = new File(codeassist, getRootFile().getName() + "_compiler_settings.json");
+    File buildSettings = new File(codemax, getRootFile().getName() + "_compiler_settings.json");
 
     if (!buildSettings.exists()) {
 
@@ -114,7 +114,7 @@ public class ModuleImpl implements Module {
     }
 
     myModuleSettings =
-        new ModuleSettings(new File(codeassist, getRootFile().getName() + "_libraries.json"));
+        new ModuleSettings(new File(codemax, getRootFile().getName() + "_libraries.json"));
   }
 
   @Override

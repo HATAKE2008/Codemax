@@ -45,7 +45,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('codeassist.keystore')
+            storeFile file('codemax.keystore')
             keyAlias 'codeassist'
             storePassword 'codeassist'
             keyPassword 'codeassist'
@@ -172,7 +172,7 @@ dependencies {
 	    implementation 'org.slf4j:slf4j-api:2.0.16'
 	    implementation 'com.blankj:utilcodex:1.31.1'
      
-     //for CodeAssist
+     //for Codemax
      implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.2.0'
 	
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'

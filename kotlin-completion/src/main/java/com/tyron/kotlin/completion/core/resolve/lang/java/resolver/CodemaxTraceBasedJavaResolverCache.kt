@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.resolve.BindingTrace
 import org.jetbrains.kotlin.resolve.lazy.ResolveSession
 import org.jetbrains.kotlin.resolve.lazy.ResolveSessionUtils
 
-class CodeAssistTraceBasedJavaResolverCache : JavaResolverCache {
+class CodemaxTraceBasedJavaResolverCache : JavaResolverCache {
     private lateinit var trace: BindingTrace
     private lateinit var resolveSession: ResolveSession
 

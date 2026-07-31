@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import kotlin.Pair;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class AttributeEditorDialogFragment extends BottomSheetDialogFragment {
 

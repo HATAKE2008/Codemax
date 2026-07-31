@@ -41,8 +41,8 @@ import com.tyron.code.language.LanguageManager;
 import com.tyron.code.language.java.JavaLanguage;
 import com.tyron.code.language.textmate.EmptyTextMateLanguage;
 import com.tyron.code.language.xml.LanguageXML;
-import com.tyron.code.ui.editor.CodeAssistCompletionAdapter;
-import com.tyron.code.ui.editor.CodeAssistCompletionLayout;
+import com.tyron.code.ui.editor.CodemaxCompletionAdapter;
+import com.tyron.code.ui.editor.CodemaxCompletionLayout;
 import com.tyron.code.ui.editor.EditorViewModel;
 import com.tyron.code.ui.editor.Savable;
 import com.tyron.code.ui.editor.impl.FileEditorManagerImpl;
@@ -80,7 +80,7 @@ import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 import java.lang.reflect.Field;
 import org.eclipse.tm4e.core.internal.theme.Theme;
 import io.github.rosemoe.sora.langs.textmate.registry.model.ThemeModel;
@@ -294,13 +294,13 @@ public class CodeEditorFragment extends Fragment
     editor.setBackgroundAnalysisEnabled(false);
     editor.setTypefaceText(
         ResourcesCompat.getFont(requireContext(), R.font.jetbrains_mono_regular));
-    editor.getComponent(EditorAutoCompletion.class).setLayout(new CodeAssistCompletionLayout());
+    editor.getComponent(EditorAutoCompletion.class).setLayout(new CodemaxCompletionLayout());
     editor.setLigatureEnabled(true);
     editor.setHighlightCurrentBlock(true);
     editor.setEdgeEffectColor(Color.TRANSPARENT);
     editor.openFile(mCurrentFile);
     //editor.getComponent(Magnifier.class).setWithinEditorForcibly(true);
-  //  editor.replaceComponent(CodeAssistCompletionAdapter.class,new CodeAssistCompletionAdapter());
+  //  editor.replaceComponent(CodemaxCompletionAdapter.class,new CodemaxCompletionAdapter());
     editor.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
     editor.setInputType(
         EditorInfo.TYPE_TEXT_FLAG_NO_SUGGESTIONS

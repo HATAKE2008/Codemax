@@ -5,7 +5,7 @@ import com.tyron.builder.project.api.AndroidModule
 import com.tyron.builder.project.api.JavaModule
 import com.tyron.builder.project.api.KotlinModule
 import com.tyron.completion.progress.ProgressManager
-import com.tyron.kotlin.completion.core.resolve.lang.kotlin.CodeAssistVirtualFileFinderFactory
+import com.tyron.kotlin.completion.core.resolve.lang.kotlin.CodemaxVirtualFileFinderFactory
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.asExecutor
 import kotlinx.coroutines.cancel

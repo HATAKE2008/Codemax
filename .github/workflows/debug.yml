@@ -3,8 +3,8 @@ permissions:
   contents: read
 
 on:
-  #push:
-  #  branches: ['main', 'editor']
+  push:
+    branches: ['main', 'editor']
   pull_request:
   #  branches: ['main', 'editor']
   workflow_dispatch:

@@ -14,7 +14,7 @@ import com.danielstone.materialaboutlibrary.model.MaterialAboutCard;
 import com.danielstone.materialaboutlibrary.model.MaterialAboutList;
 import com.danielstone.materialaboutlibrary.util.OpenSourceLicense;
 import com.google.android.material.transition.MaterialSharedAxis;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class AboutUsFragment extends MaterialAboutFragment {
 
@@ -55,7 +55,7 @@ public class AboutUsFragment extends MaterialAboutFragment {
                     getDrawable(R.drawable.ic_baseline_open_in_new_24),
                     getString(R.string.app_source_title),
                     false,
-                    Uri.parse("https://github.com/Wadamzmail/CodeAssist-Unofficial")))
+                    Uri.parse("https://github.com/HATAKE2008/Codemax")))
             .addItem(
                 ConvenienceBuilder.createRateActionItem(
                     context,

@@ -8,7 +8,7 @@ import com.tyron.builder.project.Project;
 import com.tyron.code.tasks.git.GitCommitTask;
 import com.tyron.code.ui.file.action.FileAction;
 import java.io.File;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class GitCommitAction extends FileAction {
 

@@ -59,7 +59,7 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at the [codeassist
+reported to the community leaders responsible for enforcement at the [codemax
 telegram group](telegram_group) or [discord server](discord_server).
 All complaints will be reviewed and investigated promptly and fairly.
 

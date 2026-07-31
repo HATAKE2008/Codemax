@@ -58,7 +58,7 @@ import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import kotlin.Pair;
-import org.codeassist.unofficial.R;
+import codemax.rm.R;
 
 public class LayoutEditorFragment extends Fragment implements ProjectManager.OnProjectOpenListener {
 
@@ -335,7 +335,7 @@ public class LayoutEditorFragment extends Fragment implements ProjectManager.OnP
     setLoadingText("Parsing xml files");
 
     // need to wrap the context to a default theme so
-    // material widgets wont use CodeAssist's theme
+    // material widgets wont use Codemax's theme
     ContextThemeWrapper wrapper = new ContextThemeWrapper(requireContext(), R.style.AppThemeNew);
     mInflater = new PreviewLayoutInflater(wrapper, (AndroidModule) module);
     mInflater
