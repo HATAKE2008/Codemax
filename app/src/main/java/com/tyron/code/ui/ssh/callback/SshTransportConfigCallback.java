@@ -33,9 +33,8 @@ public class SshTransportConfigCallback implements TransportConfigCallback {
         protected JSch createDefaultJSch(FS fs) throws JSchException {
           String keyName = sharedPreferences.getString(SharedPreferenceKeys.SSH_KEY_NAME, "");
 
-          JSch jsch = new JSch();
-          JSch jSch = super.createDefaultJSch(fs);
-          jSch.removeAllIdentity();
+          JSch jsch = super.createDefaultJSch(fs);
+          jsch.removeAllIdentity();
 
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             sshDir =
@@ -48,20 +47,30 @@ public class SshTransportConfigCallback implements TransportConfigCallback {
             sshDir =
                 new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/.ssh");
           }
-          if (sshDir.exists()) {
-          } else {
+          if (!sshDir.exists()) {
             sshDir.mkdirs();
           }
 
-          jsch.setKnownHosts(sshDir.toString());
-          jSch.addIdentity(sshDir.toString() + "/" + keyName, "super-secret-passphrase".getBytes());
-          return jSch;
+          File knownHosts = new File(sshDir, "known_hosts");
+          if (knownHosts.exists()) {
+            jsch.setKnownHosts(knownHosts.getAbsolutePath());
+          }
+
+          if (keyName != null && !keyName.isEmpty()) {
+            File privateKey = new File(sshDir, keyName);
+            if (privateKey.exists()) {
+              jsch.addIdentity(privateKey.getAbsolutePath());
+            }
+          }
+          return jsch;
         }
       };
 
   @Override
   public void configure(Transport transport) {
-    SshTransport sshTransport = (SshTransport) transport;
-    sshTransport.setSshSessionFactory(sshSessionFactory);
+    if (transport instanceof SshTransport) {
+      SshTransport sshTransport = (SshTransport) transport;
+      sshTransport.setSshSessionFactory(sshSessionFactory);
+    }
   }
 }

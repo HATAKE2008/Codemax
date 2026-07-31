@@ -21,6 +21,8 @@ public class SharedPreferenceKeys {
   public static final String EDITOR_TAB_UNIQUE_FILE_NAME = "editor_tab_unique_file_name";
   public static final String GIT_USER_NAME = "user_name";
   public static final String GIT_USER_EMAIL = "user_email";
+  public static final String GIT_ACCESS_TOKEN = "git_access_token";
+  public static final String GIT_REMOTE_URL = "git_remote_url";
   public static final String SSH_KEYS = "ssh_keys";
   public static final String SSH_KEY_NAME = "ssh_key_name";
   public static final String SAVED_PROJECT_ROOT_NAME = "root_name";

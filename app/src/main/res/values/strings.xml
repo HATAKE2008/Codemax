@@ -234,10 +234,16 @@
 	<string name="git_user_name_title">User Name</string>
 	<string name="git_user_desc">Full name (recorded with commits)</string> 
 	<string name="enter_full_name">Enter full name</string>
-	<string name="git_user_email_title">User Email</string>
-	<string name="git_email_desc">Email (recorded with commits)</string>  
-	<string name="enter_email">Enter email</string>
-		
+ 	<string name="git_user_email_title">User Email</string>
+ 	<string name="git_email_desc">Email (recorded with commits)</string>  
+ 	<string name="enter_email">Enter email</string>
+ 	<string name="git_access_token_title">Access Token</string>
+ 	<string name="git_access_token_desc">Personal access token for HTTPS push/pull (e.g. GitHub fine-grained token)</string>
+ 	<string name="enter_access_token">Enter access token</string>
+ 	<string name="git_remote_url_title">Remote Repository URL</string>
+ 	<string name="git_remote_url_desc">Full git remote URL (HTTPS or SSH)</string>
+ 	<string name="enter_remote_url">Enter repository URL (e.g. https://github.com/user/repo.git)</string>
+	
     <!-- file manager menu -->
     <string name="install">Install</string>
     <string name="error">Error</string>
@@ -361,6 +367,10 @@
     <string name="empty_remote">Remote name can not be empty</string>
     <string name="remote_added_successfully">Remote added successfully</string>
     <string name="remote_removed_successfully">Remote removed successfully</string>
+    <string name="no_remote_configured">No remote repository configured. Set the Remote Repository URL in Settings → Git.</string>
+    <string name="no_token_configured">No access token configured. Set the Access Token in Settings → Git.</string>
+    <string name="git_initialized">Initialized empty Git repository in %1$s</string>
+    <string name="git_reinitialized">Reinitialized existing Git repository in %1$s</string>
    
     <!-- SSH -->
 	<string name="keyName">Key name</string>

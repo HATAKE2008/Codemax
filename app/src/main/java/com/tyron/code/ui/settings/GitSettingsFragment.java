@@ -41,6 +41,8 @@ public class GitSettingsFragment extends PreferenceFragmentCompat {
     SharedPreferences pref = preference.getSharedPreferences();
     String user_name = pref.getString("user_name", "");
     String user_email = pref.getString("user_email", "");
+    String access_token = pref.getString("git_access_token", "");
+    String remote_url = pref.getString("git_remote_url", "");
 
     binding = BaseTextinputLayoutBinding.inflate(getLayoutInflater());
     View view = binding.getRoot();
@@ -103,6 +105,66 @@ public class GitSettingsFragment extends PreferenceFragmentCompat {
             });
 
         dialog1.show();
+
+        return true;
+
+      case SharedPreferenceKeys.GIT_ACCESS_TOKEN:
+        AlertDialog dialog2 =
+            new MaterialAlertDialogBuilder(requireContext())
+                .setView(view)
+                .setTitle(R.string.enter_access_token)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, null)
+                .create();
+
+        dialog2.setOnShowListener(
+            d -> {
+              final Button button = dialog2.getButton(DialogInterface.BUTTON_POSITIVE);
+
+              binding.textinputLayout.setHint(R.string.git_access_token_title);
+              EditText editText = binding.textinputLayout.getEditText();
+              editText.setText(access_token);
+
+              button.setOnClickListener(
+                  v -> {
+                    String token = binding.textinputLayout.getEditText().getText().toString();
+                    pref.edit().putString(SharedPreferenceKeys.GIT_ACCESS_TOKEN, token).apply();
+                    preference.callChangeListener(token);
+                    d.dismiss();
+                  });
+            });
+
+        dialog2.show();
+
+        return true;
+
+      case SharedPreferenceKeys.GIT_REMOTE_URL:
+        AlertDialog dialog3 =
+            new MaterialAlertDialogBuilder(requireContext())
+                .setView(view)
+                .setTitle(R.string.enter_remote_url)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, null)
+                .create();
+
+        dialog3.setOnShowListener(
+            d -> {
+              final Button button = dialog3.getButton(DialogInterface.BUTTON_POSITIVE);
+
+              binding.textinputLayout.setHint(R.string.git_remote_url_title);
+              EditText editText = binding.textinputLayout.getEditText();
+              editText.setText(remote_url);
+
+              button.setOnClickListener(
+                  v -> {
+                    String url = binding.textinputLayout.getEditText().getText().toString();
+                    pref.edit().putString(SharedPreferenceKeys.GIT_REMOTE_URL, url).apply();
+                    preference.callChangeListener(url);
+                    d.dismiss();
+                  });
+            });
+
+        dialog3.show();
 
         return true;
     }

@@ -17,6 +17,18 @@
             app:iconSpaceReserved="false"
             app:title="@string/git_user_email_title"
             app:summary="@string/git_email_desc"/>
+		
+		<Preference
+            app:key="git_access_token"
+            app:iconSpaceReserved="false"
+            app:title="@string/git_access_token_title"
+            app:summary="@string/git_access_token_desc"/>
+		
+		<Preference
+            app:key="git_remote_url"
+            app:iconSpaceReserved="false"
+            app:title="@string/git_remote_url_title"
+            app:summary="@string/git_remote_url_desc"/>
 	
        </PreferenceCategory>
 </PreferenceScreen>

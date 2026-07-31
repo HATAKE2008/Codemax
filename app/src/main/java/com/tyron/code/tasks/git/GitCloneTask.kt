@@ -12,19 +12,14 @@ import android.os.Environment
 import java.io.File
 import org.eclipse.jgit.api.Git
 import com.tyron.code.util.executeAsyncProvideError
-import android.widget.TextView
 import com.blankj.utilcode.util.ThreadUtils
-import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.tyron.builder.project.Project
 import android.widget.Toast
-import com.tyron.code.ui.ssh.callback.SshTransportConfigCallback
 import com.tyron.code.ApplicationLoader
 import com.tyron.code.tasks.git.GitProgressMonitor
 
 object GitCloneTask {
 
-       val sshTransportConfigCallback =  SshTransportConfigCallback()
-           
        fun clone(context:Context) {
        val inflater = LayoutInflater.from(context).context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater        
        inflater.inflate(R.layout.base_textinput_layout, null)
@@ -78,35 +73,33 @@ object GitCloneTask {
        targetDir = File(Environment.getExternalStorageDirectory().absolutePath + "/CodemaxProjects"  , repoName)
        }
        
-       val progress = GitProgressMonitor(binding.progress, binding.message)
-       var git: Git? = null
-        
-       val future = 
-       if(url.startsWith("git@github.com")) {
-       executeAsyncProvideError(
-       {
-       return@executeAsyncProvideError Git.cloneRepository()
-       .setURI(url)
-       .setDirectory(targetDir)
-       .setTransportConfigCallback(sshTransportConfigCallback)
-       .setProgressMonitor(progress)
-       .call()
-       .also { git = it }
-       },
-       { _, _ -> }
-       )
-       } else
-       executeAsyncProvideError(
-       {
-       return@executeAsyncProvideError Git.cloneRepository()
-       .setURI(url)
-       .setDirectory(targetDir)
-       .setProgressMonitor(progress)
-       .call()
-       .also { git = it }
-       },
-       { _, _ -> }
-       )
+        val progress = GitProgressMonitor(binding.progress, binding.message)
+        var git: Git? = null
+        val isSsh = GitCredentials.isSshUrl(url)
+        val preferences = ApplicationLoader.getDefaultPreferences()
+
+        val future =
+        executeAsyncProvideError(
+        {
+        return@executeAsyncProvideError Git.cloneRepository()
+        .setURI(url)
+        .setDirectory(targetDir)
+        .apply {
+        if (isSsh) {
+        setTransportConfigCallback(GitCredentials.sshTransportConfigCallback)
+        } else {
+        val credentials = GitCredentials.getCredentialsProvider(preferences)
+        if (credentials != null) {
+        setCredentialsProvider(credentials)
+        }
+        }
+        }
+        .setProgressMonitor(progress)
+        .call()
+        .also { git = it }
+        },
+        { _, _ -> }
+        )
        
        builder.setPositiveButton(android.R.string.cancel) { iface, _ ->
        iface.dismiss()
