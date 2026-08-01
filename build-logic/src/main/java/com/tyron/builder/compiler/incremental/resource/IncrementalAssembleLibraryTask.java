@@ -42,7 +42,6 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -60,17 +59,15 @@ import javax.tools.DiagnosticListener;
 import javax.tools.JavaFileObject;
 import javax.tools.SimpleJavaFileObject;
 import javax.tools.StandardLocation;
-import kotlin.jvm.functions.Function0;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.kotlin.build.report.ICReporterBase;
 import org.jetbrains.kotlin.cli.common.ExitCode;
 import org.jetbrains.kotlin.cli.common.arguments.K2JVMCompilerArguments;
 import org.jetbrains.kotlin.cli.common.messages.CompilerMessageSeverity;
 import org.jetbrains.kotlin.cli.common.messages.CompilerMessageSourceLocation;
 import org.jetbrains.kotlin.cli.common.messages.MessageCollector;
 import org.jetbrains.kotlin.cli.jvm.K2JVMCompiler;
-import org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerKt;
+import org.jetbrains.kotlin.config.Services;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -1141,32 +1138,9 @@ public class IncrementalAssembleLibraryTask extends Task<AndroidModule> {
           fileList.add(kotlinDir);
         }
 
-        IncrementalJvmCompilerRunnerKt.makeIncrementally(
-            cacheDir,
-            Arrays.asList(fileList.toArray(new File[0])),
-            args,
-            mCollector,
-            new ICReporterBase() {
-              @Override
-              public void report(@NonNull Function0<String> function0) {
-                // getLogger().info()
-                function0.invoke();
-              }
+        ExitCode exitCode = compiler.exec(mCollector, Services.EMPTY, args);
 
-              @Override
-              public void reportVerbose(@NonNull Function0<String> function0) {
-                // getLogger().verbose()
-                function0.invoke();
-              }
-
-              @Override
-              public void reportCompileIteration(
-                  boolean incremental,
-                  @NonNull Collection<? extends File> sources,
-                  @NonNull ExitCode exitCode) {}
-            });
-
-        if (mCollector.hasErrors()) {
+        if (exitCode != ExitCode.OK || mCollector.hasErrors()) {
           throw new CompilationFailedException("Compilation failed, see logs for more details");
         } else {
           getLogger().debug("> Task :" + name + ":" + "classes");

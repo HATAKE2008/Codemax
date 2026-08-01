@@ -381,13 +381,13 @@ public class DependencyManager {
       try {
         JSONObject javaSettings = new JSONObject();
         javaSettings.put("isCompilerEnabled", "false");
-        javaSettings.put("sourceCompatibility", "1.8");
-        javaSettings.put("targetCompatibility", "1.8");
+        javaSettings.put("sourceCompatibility", "17");
+        javaSettings.put("targetCompatibility", "17");
         javaSettings.put("skipJavaTask", "false");
 
         JSONObject kotlinSettings = new JSONObject();
         kotlinSettings.put("isCompilerEnabled", "false");
-        kotlinSettings.put("jvmTarget", "1.8");
+        kotlinSettings.put("jvmTarget", "17");
         kotlinSettings.put("skipKotlinTask", "false");
         // kotlinSettings.put("languageVersion", "2.1");
 

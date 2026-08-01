@@ -22,7 +22,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -31,17 +30,15 @@ import java.util.Set;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 import java.util.zip.ZipException;
-import kotlin.jvm.functions.Function0;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.kotlin.build.report.ICReporterBase;
 import org.jetbrains.kotlin.cli.common.ExitCode;
 import org.jetbrains.kotlin.cli.common.arguments.K2JVMCompilerArguments;
 import org.jetbrains.kotlin.cli.common.messages.CompilerMessageSeverity;
 import org.jetbrains.kotlin.cli.common.messages.CompilerMessageSourceLocation;
 import org.jetbrains.kotlin.cli.common.messages.MessageCollector;
 import org.jetbrains.kotlin.cli.jvm.K2JVMCompiler;
-import org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerKt;
+import org.jetbrains.kotlin.config.Services;
 import org.json.JSONObject;
 
 public class IncrementalKotlinCompiler extends Task<AndroidModule> {
@@ -241,31 +238,8 @@ public class IncrementalKotlinCompiler extends Task<AndroidModule> {
           fileList.add(kotlinDir);
         }
 
-        IncrementalJvmCompilerRunnerKt.makeIncrementally(
-            cacheDir,
-            Arrays.asList(fileList.toArray(new File[0])),
-            args,
-            mCollector,
-            new ICReporterBase() {
-              @Override
-              public void report(@NonNull Function0<String> function0) {
-                // getLogger().info()
-                function0.invoke();
-              }
-
-              @Override
-              public void reportVerbose(@NonNull Function0<String> function0) {
-                // getLogger().verbose()
-                function0.invoke();
-              }
-
-              @Override
-              public void reportCompileIteration(
-                  boolean incremental,
-                  @NonNull Collection<? extends File> sources,
-                  @NonNull ExitCode exitCode) {}
-            });
-        if (mCollector.hasErrors()) {
+        ExitCode exitCode = compiler.exec(mCollector, Services.EMPTY, args);
+        if (exitCode != ExitCode.OK || mCollector.hasErrors()) {
           throw new CompilationFailedException("Compilation failed, see logs for more details");
         }
       } else {

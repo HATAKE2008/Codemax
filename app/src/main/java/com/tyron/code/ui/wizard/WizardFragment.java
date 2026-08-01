@@ -538,7 +538,7 @@ public class WizardFragment extends Fragment {
         } catch (IOException e) {
             return;
         }
-        String targetSdk = "35";
+        String targetSdk = "36";
         String minSdk = mMinSdkText.getText().toString()
                 .substring("API".length() + 1, "API".length() + 3); // at least 2 digits
         int minSdkInt = Integer.parseInt(minSdk);
