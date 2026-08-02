@@ -29,9 +29,10 @@ import org.jetbrains.kotlin.descriptors.VariableDescriptor;
 import org.jetbrains.kotlin.renderer.ClassifierNamePolicy;
 import org.jetbrains.kotlin.renderer.DescriptorRenderer;
 import org.jetbrains.kotlin.renderer.ParameterNameRenderingPolicy;
-import org.jetbrains.kotlin.types.ErrorUtils;
+import org.jetbrains.kotlin.types.error.ErrorUtils;
+import org.jetbrains.kotlin.types.error.ErrorTypeKind;
 import org.jetbrains.kotlin.types.KotlinType;
-import org.jetbrains.kotlin.types.UnresolvedType;
+import org.jetbrains.kotlin.types.typeUtil.TypeUtilsKt;
 
 public class RenderCompletionItem implements DeclarationDescriptorVisitor<CompletionItem, Void> {
 
@@ -47,9 +48,9 @@ public class RenderCompletionItem implements DeclarationDescriptorVisitor<Comple
             it.setParameterNameRenderingPolicy(ParameterNameRenderingPolicy.ONLY_NON_SYNTHESIZED);
             it.setTypeNormalizer(
                 kotlinType -> {
-                  if (kotlinType instanceof UnresolvedType) {
-                    return ErrorUtils.createErrorTypeWithCustomDebugName(
-                        ((UnresolvedType) kotlinType).getPresentableName());
+                  if (TypeUtilsKt.isUnresolvedType(kotlinType)) {
+                    return ErrorUtils.createErrorType(
+                        ErrorTypeKind.UNRESOLVED_TYPE, kotlinType.toString());
                   }
                   return kotlinType;
                 });

@@ -184,7 +184,8 @@ abstract class KotlinCommonEnvironment(disposable: Disposable) {
 }
 
 private fun createKotlinCoreApplicationEnvironment(disposable: Disposable): KotlinCoreApplicationEnvironment =
-    KotlinCoreApplicationEnvironment.create(disposable, false).apply {
+    KotlinCoreApplicationEnvironment.create(
+            disposable, KotlinCoreApplicationEnvironmentMode.Production).apply {
         registerAppExtensionPoints()
 
         registerFileType(PlainTextFileType.INSTANCE, "xml")
