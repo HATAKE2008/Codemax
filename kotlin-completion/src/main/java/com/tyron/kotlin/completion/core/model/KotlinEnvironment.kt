@@ -10,12 +10,10 @@ import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.asExecutor
 import kotlinx.coroutines.cancel
 import org.jetbrains.concurrency.CancellablePromise
-import org.jetbrains.kotlin.asJava.classes.FacadeCache
 import org.jetbrains.kotlin.cli.common.CLIConfigurationKeys
 import org.jetbrains.kotlin.cli.common.messages.MessageCollector.Companion.NONE
 import org.jetbrains.kotlin.cli.jvm.compiler.EnvironmentConfigFiles
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
-import org.jetbrains.kotlin.cli.jvm.compiler.toAbstractProjectEnvironment
 import org.jetbrains.kotlin.cli.jvm.config.addJavaSourceRoot
 import org.jetbrains.kotlin.cli.jvm.config.addJvmClasspathRoot
 import org.jetbrains.kotlin.cli.jvm.config.addJvmClasspathRoots
@@ -25,7 +23,6 @@ import org.jetbrains.kotlin.com.intellij.core.CoreApplicationEnvironment
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
 import org.jetbrains.kotlin.com.intellij.openapi.Disposable
 import org.jetbrains.kotlin.com.intellij.openapi.application.*
-import org.jetbrains.kotlin.com.intellij.openapi.components.ServiceManager
 import org.jetbrains.kotlin.com.intellij.openapi.editor.Document
 import org.jetbrains.kotlin.com.intellij.openapi.editor.impl.DocumentWriteAccessGuard
 import org.jetbrains.kotlin.com.intellij.openapi.extensions.ExtensionPointName
@@ -69,14 +66,10 @@ fun getEnvironment(project: org.jetbrains.kotlin.com.intellij.openapi.project.Pr
 class KotlinEnvironment private constructor(val module: KotlinModule, disposable: Disposable) :
     KotlinCommonEnvironment(disposable) {
 
-    val index by lazy { JvmDependenciesIndexImpl(getRoots().toList()) }
+    val index by lazy { JvmDependenciesIndexImpl(getRoots().toList(), shouldOnlyFindFirstClass = true) }
 
     init {
         configureClasspath(module)
-
-        with(project) {
-            registerService(FacadeCache::class.java, FacadeCache(project))
-        }
     }
 
     private fun configureClasspath(kotlinModule: KotlinModule) {
@@ -144,10 +137,15 @@ class KotlinEnvironment private constructor(val module: KotlinModule, disposable
             environment.addKotlinSourceRoots(listOf(module.kotlinDirectory, (module as JavaModule).javaDirectory))
 
             CoreApplicationEnvironment.registerApplicationExtensionPoint(DocumentWriteAccessGuard.EP_NAME, DocumentWriteAccessGuard::class.java);
-            environment.projectEnvironment.registerProjectExtensionPoint(
-                ExtensionPointName.create(PsiTreeChangeListener.EP.name),
-                PsiTreeChangeListener::class.java
-            )
+            environment.project.extensionArea.let { area ->
+                if (!area.hasExtensionPoint(PsiTreeChangeListener.EP.name)) {
+                    CoreApplicationEnvironment.registerExtensionPoint(
+                        area,
+                        PsiTreeChangeListener.EP.name,
+                        PsiTreeChangeListener::class.java
+                    )
+                }
+            }
 
             (environment.projectEnvironment.environment as CoreApplicationEnvironment)
                 .registerApplicationService(AsyncExecutionService::class.java, object : AsyncExecutionService() {
@@ -156,10 +154,6 @@ class KotlinEnvironment private constructor(val module: KotlinModule, disposable
 
                     override fun createWriteThreadExecutor(p0: ModalityState): AppUIExecutor {
                         return object : AppUIExecutor {
-                            override fun expireWith(p0: Disposable): AppUIExecutor {
-                                TODO("Not yet implemented")
-                            }
-
                             override fun submit(p0: Runnable): CancellablePromise<*> {
                                 val result = executor.submit(p0)
                                 return CancellablePromiseWrapper(result)
@@ -172,14 +166,15 @@ class KotlinEnvironment private constructor(val module: KotlinModule, disposable
                         }
                     }
 
-                    override fun <T : Any?> buildNonBlockingReadAction(callable: Callable<T>): NonBlockingReadAction<T> {
-                        return NonBlockingReadActionImpl(callable)
+                    override fun <T : Any?> buildNonBlockingReadAction(callable: Callable<out T>): NonBlockingReadAction<T> {
+                        @Suppress("UNCHECKED_CAST")
+                        return NonBlockingReadActionImpl(callable as Callable<T>)
                     }
 
                 })
 
             val newInstance = DocumentCommitThread::class.constructors.first()
-                .javaConstructor?.newInstance();
+                .javaConstructor?.newInstance() as DocumentCommitProcessor;
             (environment.projectEnvironment.environment as CoreApplicationEnvironment)
                 .registerApplicationService(DocumentCommitProcessor::class.java, newInstance);
             environment.projectEnvironment.project.picoContainer.unregisterComponent(PsiDocumentManager::class.java.name)

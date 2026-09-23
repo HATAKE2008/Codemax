@@ -35,7 +35,7 @@ public class JavacTreeMemberPattern<T extends Tree, Self extends JavacTreeMember
           public boolean processValues(
               T t,
               ProcessingContext processingContext,
-              PairProcessor<ClassTree, ProcessingContext> pairProcessor) {
+              PairProcessor<? super ClassTree, ? super ProcessingContext> pairProcessor) {
             return elementPattern.accepts(t, processingContext);
           }
 

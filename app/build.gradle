@@ -82,6 +82,7 @@ android {
         exclude "about_files/*"
         exclude "META-INF/eclipse.inf"
         pickFirst "META-INF/native-image/reflect-config.json"
+        pickFirst "**.kotlin_builtins"
 		
         //exclude 'com/sun/tools/javac/resources/legacy.properties'
 		

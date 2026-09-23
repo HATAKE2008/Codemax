@@ -137,7 +137,15 @@ public class JavaCompletionProvider extends CompletionProvider {
 
     DocumentEventImpl event =
         new DocumentEventImpl(
-            document, 0, oldText, contents, storedPsi.getModificationStamp(), true);
+            document,
+            0,
+            oldText,
+            contents,
+            storedPsi.getModificationStamp(),
+            true,
+            0,
+            oldText.length(),
+            0);
     ((PsiDocumentManagerBase) documentManager).documentChanged(event);
 
     PsiFileFactory factory = PsiFileFactory.getInstance(jetProject);

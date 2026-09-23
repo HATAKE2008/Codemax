@@ -20,7 +20,6 @@ import org.jetbrains.kotlin.com.intellij.patterns.InitialPatternCondition;
 import org.jetbrains.kotlin.com.intellij.patterns.PatternCondition;
 import org.jetbrains.kotlin.com.intellij.patterns.StandardPatterns;
 import org.jetbrains.kotlin.com.intellij.util.ProcessingContext;
-import org.jetbrains.kotlin.com.intellij.util.containers.ContainerUtil;
 
 public class JavacTreePattern<T extends Tree, Self extends JavacTreePattern<T, Self>>
     extends JavacTreeElementPattern<Tree, T, Self> {
@@ -83,8 +82,7 @@ public class JavacTreePattern<T extends Tree, Self extends JavacTreePattern<T, S
 
   public Self methodCallParameter(final int index, final ElementPattern<?> methodPattern) {
     final JavacTreeNamePatternCondition nameCondition =
-        ContainerUtil.findInstance(
-            methodPattern.getCondition().getConditions(), JavacTreeNamePatternCondition.class);
+        JavacTreeNamePatternCondition.findInstance(methodPattern);
 
     return with(
         new PatternCondition<T>("methodCallParameter") {

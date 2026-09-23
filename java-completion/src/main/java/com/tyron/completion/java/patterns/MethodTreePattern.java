@@ -59,7 +59,9 @@ public class MethodTreePattern<T extends Tree, Self extends MethodTreePattern<T,
 
           @Override
           public boolean processValues(
-              Tree t, ProcessingContext context, PairProcessor<Tree, ProcessingContext> processor) {
+              Tree t,
+              ProcessingContext context,
+              PairProcessor<? super Tree, ? super ProcessingContext> processor) {
             Trees trees = (Trees) context.get("trees");
             CompilationUnitTree root = (CompilationUnitTree) context.get("root");
             Elements elements = (Elements) context.get("elements");

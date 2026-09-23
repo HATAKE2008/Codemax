@@ -8,7 +8,6 @@ import org.jetbrains.kotlin.com.intellij.patterns.ElementPattern;
 import org.jetbrains.kotlin.com.intellij.patterns.InitialPatternCondition;
 import org.jetbrains.kotlin.com.intellij.patterns.PatternCondition;
 import org.jetbrains.kotlin.com.intellij.util.ProcessingContext;
-import org.jetbrains.kotlin.com.intellij.util.containers.ContainerUtil;
 
 public class ExpressionTreePattern<
         T extends ExpressionTree, Self extends ExpressionTreePattern<T, Self>>
@@ -24,8 +23,7 @@ public class ExpressionTreePattern<
   public MethodInvocationTreePattern methodCall(
       final ElementPattern<? extends MethodInvocationTree> method) {
     final JavacTreeNamePatternCondition nameCondition =
-        ContainerUtil.findInstance(
-            method.getCondition().getConditions(), JavacTreeNamePatternCondition.class);
+        JavacTreeNamePatternCondition.findInstance(method);
     return new MethodInvocationTreePattern()
         .and(this)
         .with(

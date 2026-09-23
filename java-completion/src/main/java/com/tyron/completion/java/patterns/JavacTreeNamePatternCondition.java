@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.kotlin.com.intellij.patterns.ElementPattern;
+import org.jetbrains.kotlin.com.intellij.patterns.PatternCondition;
 import org.jetbrains.kotlin.com.intellij.patterns.PatternConditionPlus;
 import org.jetbrains.kotlin.com.intellij.util.PairProcessor;
 import org.jetbrains.kotlin.com.intellij.util.ProcessingContext;
@@ -21,6 +22,16 @@ public class JavacTreeNamePatternCondition extends PatternConditionPlus<Tree, St
 
   public JavacTreeNamePatternCondition(@NonNls String methodName, ElementPattern valuePattern) {
     super(methodName, valuePattern);
+  }
+
+  @Nullable
+  public static JavacTreeNamePatternCondition findInstance(@NotNull ElementPattern<?> pattern) {
+    for (PatternCondition<?> condition : pattern.getCondition().getConditions()) {
+      if (condition instanceof JavacTreeNamePatternCondition) {
+        return (JavacTreeNamePatternCondition) condition;
+      }
+    }
+    return null;
   }
 
   public @Nullable String getPropertyValue(@NotNull Object o) {
@@ -60,7 +71,9 @@ public class JavacTreeNamePatternCondition extends PatternConditionPlus<Tree, St
 
   @Override
   public boolean processValues(
-      Tree tree, ProcessingContext context, PairProcessor<String, ProcessingContext> processor) {
+      Tree tree,
+      ProcessingContext context,
+      PairProcessor<? super String, ? super ProcessingContext> processor) {
     return processor.process(getPropertyValue(tree), context);
   }
 

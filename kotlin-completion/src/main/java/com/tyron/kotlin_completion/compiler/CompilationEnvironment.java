@@ -99,7 +99,7 @@ public class CompilationEnvironment implements Closeable {
 
   public Pair<ComponentProvider, BindingTraceContext> createContainer(
       Collection<KtFile> filesToAnalyze, Collection<KtFile> sourcePath) {
-    CliBindingTrace trace = new CliBindingTrace();
+    CliBindingTrace trace = new CliBindingTrace(getEnvironment().getProject());
     MutableModuleContext moduleContext =
         CodemaxAnalyzerFacadeForJVM.createModuleContext(
             getEnvironment().getProject(), getEnvironment().getConfiguration(), true);

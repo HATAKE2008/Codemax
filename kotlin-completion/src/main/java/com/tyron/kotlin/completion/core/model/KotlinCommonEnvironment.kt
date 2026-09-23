@@ -10,8 +10,6 @@ import org.jetbrains.kotlin.cli.jvm.compiler.*
 import org.jetbrains.kotlin.cli.jvm.index.JavaRoot
 import org.jetbrains.kotlin.cli.jvm.index.JvmDependenciesDynamicCompoundIndex
 import org.jetbrains.kotlin.cli.jvm.index.SingleJavaFileRootsIndex
-import org.jetbrains.kotlin.codegen.extensions.ClassBuilderInterceptorExtension
-import org.jetbrains.kotlin.codegen.extensions.ExpressionCodegenExtension
 import org.jetbrains.kotlin.com.intellij.codeInsight.ContainerProvider
 import org.jetbrains.kotlin.com.intellij.codeInsight.ExternalAnnotationsManager
 import org.jetbrains.kotlin.com.intellij.codeInsight.InferredAnnotationsManager
@@ -23,7 +21,6 @@ import org.jetbrains.kotlin.com.intellij.lang.MetaLanguage
 import org.jetbrains.kotlin.com.intellij.lang.jvm.facade.JvmElementProvider
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
 import org.jetbrains.kotlin.com.intellij.openapi.Disposable
-import org.jetbrains.kotlin.com.intellij.openapi.components.ServiceManager
 import org.jetbrains.kotlin.com.intellij.openapi.extensions.ExtensionPointName
 import org.jetbrains.kotlin.com.intellij.openapi.extensions.Extensions
 import org.jetbrains.kotlin.com.intellij.openapi.extensions.ExtensionsArea
@@ -49,7 +46,6 @@ import org.jetbrains.kotlin.load.kotlin.KotlinBinaryClassCache
 import org.jetbrains.kotlin.load.kotlin.ModuleVisibilityManager
 import org.jetbrains.kotlin.parsing.KotlinParserDefinition
 import org.jetbrains.kotlin.resolve.CodeAnalyzerInitializer
-import org.jetbrains.kotlin.resolve.ModuleAnnotationsResolver
 import org.jetbrains.kotlin.resolve.diagnostics.DiagnosticSuppressor
 import org.jetbrains.kotlin.resolve.extensions.SyntheticResolveExtension
 import org.jetbrains.kotlin.resolve.jvm.KotlinJavaPsiFacade
@@ -93,17 +89,16 @@ abstract class KotlinCommonEnvironment(disposable: Disposable) {
 
             registerService(
                 CoreJavaFileManager::class.java,
-                ServiceManager.getService(project, JavaFileManager::class.java) as CoreJavaFileManager
+                getService(JavaFileManager::class.java) as CoreJavaFileManager
             )
 
-            registerService(ModuleAnnotationsResolver::class.java, CliModuleAnnotationsResolver())
             registerService(KotlinSourceIndex::class.java, KotlinSourceIndex())
             registerService(ExternalAnnotationsManager::class.java, MockExternalAnnotationsManager())
             registerService(InferredAnnotationsManager::class.java, MockInferredAnnotationsManager())
 
             // todo: code style manager
 
-            val traceHolder = CliTraceHolder().also {
+            val traceHolder = CliTraceHolder(this).also {
                 registerService(CodeAnalyzerInitializer::class.java, it)
             }
 
@@ -114,31 +109,28 @@ abstract class KotlinCommonEnvironment(disposable: Disposable) {
 
             registerService(JavaModuleResolver::class.java, CodemaxKotlinModuleResolver())
 
-            val javaFileManager = ServiceManager.getService(this, JavaFileManager::class.java)
+            val javaFileManager = getService(JavaFileManager::class.java)
             (javaFileManager as KotlinCliJavaFileManagerImpl)
                 .initialize(
-                    JvmDependenciesDynamicCompoundIndex(),
+                    JvmDependenciesDynamicCompoundIndex(shouldOnlyFindFirstClass = true),
                     arrayListOf(),
                     SingleJavaFileRootsIndex(arrayListOf()),
-                    true
+                    true,
+                    null
                 )
 
-            val area = this.extensionArea
-            area.getExtensionPoint(PsiElementFinder.EP_NAME)
-                .registerExtension(PsiElementFinderImpl(this, javaFileManager), disposable)
+            PsiElementFinder.EP.getPoint(this)
+                .registerExtension(PsiElementFinderImpl(this), disposable)
             val kotlinAsJavaSupport = CliKotlinAsJavaSupport(this, traceHolder)
             registerService(KotlinAsJavaSupport::class.java, kotlinAsJavaSupport)
-            area.getExtensionPoint(PsiElementFinder.EP_NAME)
+            PsiElementFinder.EP.getPoint(this)
                 .registerExtension(JavaElementFinder(this), disposable)
             registerService(KotlinJavaPsiFacade::class.java, KotlinJavaPsiFacade(this))
         }
 
         configuration.put(CommonConfigurationKeys.MODULE_NAME, project.name)
 
-        ExpressionCodegenExtension.Companion.registerExtensionPoint(project)
         registerApplicationExtensionPointsAndExtensionsFrom()
-
-        ClassBuilderInterceptorExtension.registerExtensionPoint(project)
     }
 
     fun getRoots(): Set<JavaRoot> = roots
@@ -198,8 +190,8 @@ private fun createKotlinCoreApplicationEnvironment(disposable: Disposable): Kotl
     }
 
 private fun registerProjectExtensionPoints(area: ExtensionsArea) {
-    registerExtensionPoint(area, PsiTreeChangePreprocessor.EP_NAME, PsiTreeChangePreprocessor::class)
-    registerExtensionPoint(area, PsiElementFinder.EP_NAME, PsiElementFinder::class)
+    CoreApplicationEnvironment.registerExtensionPoint(area, PsiTreeChangePreprocessor.EP.name, PsiTreeChangePreprocessor::class.java)
+    CoreApplicationEnvironment.registerExtensionPoint(area, PsiElementFinder.EP.name, PsiElementFinder::class.java)
     registerExtensionPoint(area, SyntheticResolveExtension.extensionPointName, SyntheticResolveExtension::class)
 }
 

@@ -13,7 +13,6 @@ import io.github.rosemoe.sora.widget.component.EditorCompletionAdapter;
 import io.github.rosemoe.sora2.R;
 import java.lang.reflect.Field;
 import java.util.List;
-import org.jetbrains.kotlin.com.intellij.util.ReflectionUtil;
 
 public class CodemaxCompletionAdapter extends EditorCompletionAdapter {
 
@@ -23,7 +22,12 @@ public class CodemaxCompletionAdapter extends EditorCompletionAdapter {
       itemsField.setAccessible(true);
       itemsField.set(this, items);
 
-      Field windowField = ReflectionUtil.getDeclaredField(EditorCompletionAdapter.class, "window");
+      Field windowField;
+      try {
+        windowField = EditorCompletionAdapter.class.getDeclaredField("window");
+      } catch (NoSuchFieldException e) {
+        windowField = null;
+      }
       if (windowField != null) {
         windowField.setAccessible(true);
         windowField.set(this, window);

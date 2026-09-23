@@ -3,17 +3,18 @@ package com.tyron.kotlin.completion.core.resolve.lang.kotlin
 import com.tyron.builder.project.api.KotlinModule
 import com.tyron.kotlin.completion.core.model.KotlinEnvironment
 import com.tyron.kotlin.completion.core.resolve.lang.java.structure.CodemaxJavaElementUtil
+import org.jetbrains.kotlin.analyzer.ModuleInfo
 import org.jetbrains.kotlin.cli.jvm.index.JavaRoot
 import org.jetbrains.kotlin.cli.jvm.index.JvmDependenciesIndex
 import org.jetbrains.kotlin.com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.com.intellij.openapi.vfs.VirtualFile
 import org.jetbrains.kotlin.com.intellij.psi.search.GlobalSearchScope
-import org.jetbrains.kotlin.descriptors.ModuleDescriptor
 import org.jetbrains.kotlin.load.java.structure.JavaClass
 import org.jetbrains.kotlin.load.kotlin.KotlinBinaryClassCache
 import org.jetbrains.kotlin.load.kotlin.KotlinClassFinder
 import org.jetbrains.kotlin.load.kotlin.VirtualFileFinder
 import org.jetbrains.kotlin.load.kotlin.VirtualFileFinderFactory
+import org.jetbrains.kotlin.metadata.deserialization.MetadataVersion
 import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.name.Name
@@ -53,6 +54,8 @@ class CodemaxVirtualFileFinder(
 //        return found
         return false
     }
+
+    override fun findMetadataTopLevelClassesInPackage(packageFqName: FqName): Set<String>? = null
 
     override fun findBuiltInsData(packageFqName: FqName): InputStream? {
 //        val fileName = BuiltInSerializerProtocol.getBuiltInsFileName(packageFqName)
@@ -105,7 +108,10 @@ class CodemaxVirtualFileFinder(
 //        }?.check { it in scope }
         TODO()
 
-    override fun findKotlinClassOrContent(javaClass: JavaClass): KotlinClassFinder.Result? {
+    override fun findKotlinClassOrContent(
+        javaClass: JavaClass,
+        metadataVersion: MetadataVersion
+    ): KotlinClassFinder.Result? {
         return null
 //        val fqName = javaClass.fqName ?: return null
 //
@@ -129,8 +135,8 @@ class CodemaxVirtualFileFinder(
 class CodemaxVirtualFileFinderFactory(private val project: KotlinModule) :
     VirtualFileFinderFactory {
 
-    override fun create(project: Project, module: ModuleDescriptor) =
-        VirtualFileFinderFactory.getInstance(project).create(project, module)
+    override fun create(project: Project, module: ModuleInfo): VirtualFileFinder =
+        CodemaxVirtualFileFinder(this.project, GlobalSearchScope.allScope(project))
 
     override fun create(scope: GlobalSearchScope): VirtualFileFinder = CodemaxVirtualFileFinder(project, scope)
 }

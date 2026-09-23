@@ -54,12 +54,22 @@ public class CodemaxJavaClassFinder extends AbstractJavaClassFinder {
   }
 
   @Override
-  public JavaPackage findPackage(@NonNull FqName fqName) {
-    return impl.findPackage(fqName);
+  public java.util.List<JavaClass> findClasses(@NonNull Request request) {
+    return impl.findClasses(request);
+  }
+
+  @Override
+  public JavaPackage findPackage(@NonNull FqName fqName, boolean mayHaveAnnotations) {
+    return impl.findPackage(fqName, mayHaveAnnotations);
   }
 
   @Override
   public Set<String> knownClassNamesInPackage(@NonNull FqName fqName) {
     return impl.knownClassNamesInPackage(fqName);
+  }
+
+  @Override
+  public boolean canComputeKnownClassNamesInPackage() {
+    return impl.canComputeKnownClassNamesInPackage();
   }
 }

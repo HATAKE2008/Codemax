@@ -30,7 +30,6 @@ import org.jetbrains.kotlin.resolve.LazyTopDownAnalyzer
 import org.jetbrains.kotlin.resolve.TopDownAnalysisMode
 import org.jetbrains.kotlin.resolve.jvm.JavaDescriptorResolver
 import org.jetbrains.kotlin.resolve.jvm.extensions.PackageFragmentProviderExtension
-import org.jetbrains.kotlin.resolve.jvm.modules.JavaModuleResolver
 import org.jetbrains.kotlin.resolve.lazy.KotlinCodeAnalyzer
 import org.jetbrains.kotlin.resolve.lazy.declarations.DeclarationProviderFactory
 import org.jetbrains.kotlin.resolve.lazy.declarations.FileBasedDeclarationProviderFactory
@@ -77,7 +76,7 @@ object CodemaxAnalyzerFacadeForJVM {
         javaProject: KotlinModule?,
         jvmTarget: JvmTarget = JvmTarget.DEFAULT
     ): AnalysisResultWithProvider {
-        val trace = CliBindingTrace()
+        val trace = CliBindingTrace(environment.project)
         val moduleContext = createModuleContext(environment.project, environment.configuration, true)
         val container = createContainer(trace, moduleContext, filesToAnalyze, allFiles, environment, javaProject, jvmTarget)
 
@@ -110,7 +109,7 @@ object CodemaxAnalyzerFacadeForJVM {
         val providerFactory = FileBasedDeclarationProviderFactory(moduleContext.storageManager, allFiles)
 
         val sourceScope = TopDownAnalyzerFacadeForJVM.newModuleSearchScope(project, filesToAnalyze)
-        val moduleClassResolver = TopDownAnalyzerFacadeForJVM.SourceOrBinaryModuleClassResolver(sourceScope)
+        val moduleClassResolver = CodemaxModuleClassResolver(sourceScope)
 
         val languageVersionSettings = LanguageVersionSettingsImpl(
             LanguageVersionSettingsImpl.DEFAULT.languageVersion,
@@ -138,8 +137,8 @@ object CodemaxAnalyzerFacadeForJVM {
                 jvmTarget,
                 languageVersionSettings,
                 moduleClassResolver,
-                javaProject,
-                environment.project.getService(JavaModuleResolver::class.java))
+                javaProject
+            )
 
             moduleClassResolver.compiledCodeResolver = dependenciesContainer.get<JavaDescriptorResolver>()
 
@@ -163,8 +162,7 @@ object CodemaxAnalyzerFacadeForJVM {
             jvmTarget,
             languageVersionSettings,
             moduleClassResolver,
-            javaProject,
-            environment.project.getService(JavaModuleResolver::class.java)
+            javaProject
         ).apply {
             initJvmBuiltInsForTopDownAnalysis()
         }

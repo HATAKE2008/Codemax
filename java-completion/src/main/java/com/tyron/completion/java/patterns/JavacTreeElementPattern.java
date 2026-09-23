@@ -87,7 +87,8 @@ public abstract class JavacTreeElementPattern<
           public boolean processValues(
               T t,
               ProcessingContext context,
-              PairProcessor<Collection<ParentType>, ProcessingContext> processor) {
+              PairProcessor<? super Collection<ParentType>, ? super ProcessingContext>
+                  processor) {
             return processor.process(Arrays.asList(getChildren(t)), context);
           }
         });
@@ -127,7 +128,7 @@ public abstract class JavacTreeElementPattern<
           public boolean processValues(
               T t,
               ProcessingContext context,
-              PairProcessor<ParentType, ProcessingContext> processor) {
+              PairProcessor<? super ParentType, ? super ProcessingContext> processor) {
             ParentType parent = t;
             for (int i = 0; i < level; i++) {
               if (parent == null) return true;
@@ -155,7 +156,7 @@ public abstract class JavacTreeElementPattern<
           public boolean processValues(
               T t,
               ProcessingContext context,
-              PairProcessor<ParentType, ProcessingContext> processor) {
+              PairProcessor<? super ParentType, ? super ProcessingContext> processor) {
             ParentType element = strict ? getParent(context, t) : t;
             while (element != null) {
               if (!processor.process(element, context)) return false;

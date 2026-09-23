@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.load.kotlin.PackagePartProvider
 import org.jetbrains.kotlin.metadata.jvm.deserialization.ModuleMapping
 import org.jetbrains.kotlin.metadata.jvm.deserialization.PackageParts
 import org.jetbrains.kotlin.name.ClassId
-import org.jetbrains.kotlin.resolve.CompilerDeserializationConfiguration
+import org.jetbrains.kotlin.resolve.JvmCompilerDeserializationConfiguration
 import org.jetbrains.kotlin.utils.SmartList
 import org.jetbrains.kotlin.serialization.deserialization.ClassData
 import java.io.EOFException
@@ -23,7 +23,11 @@ class KotlinPackagePartProvider(private val environment: KotlinCoreEnvironment) 
 
     private val loadedModules: MutableList<ModuleMappingInfo> = SmartList()
 
-    private val deserializationConfiguration = CompilerDeserializationConfiguration(LanguageVersionSettingsImpl.DEFAULT)
+    private val deserializationConfiguration = JvmCompilerDeserializationConfiguration(LanguageVersionSettingsImpl.DEFAULT)
+
+    override fun computePackageSetWithNonClassDeclarations(): Set<String> = emptySet()
+
+    override fun mayHaveOptionalAnnotationClasses(): Boolean = false
 
     override fun getAnnotationsOnBinaryModule(moduleName: String): List<ClassId> =
         loadedModules.mapNotNull { (_, mapping, name) ->
