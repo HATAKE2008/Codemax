@@ -69,10 +69,10 @@ public class IncrementalKotlinCompiler extends Task<AndroidModule> {
     mFilesToCompile.addAll(getSourceFiles(javaDir));
     mFilesToCompile.addAll(getSourceFiles(kotlinDir));
 
-    //        mKotlinHome = new File(BuildModule.getContext().getFilesDir(), "kotlin-home");
-    //        if (!mKotlinHome.exists() && !mKotlinHome.mkdirs()) {
-    //            throw new IOException("Unable to create kotlin home directory");
-    //        }
+    mKotlinHome = new File(BuildModule.getContext().getFilesDir(), "kotlin-home");
+    if (!mKotlinHome.exists() && !mKotlinHome.mkdirs()) {
+      throw new IOException("Unable to create kotlin home directory");
+    }
 
     mClassOutput = new File(getModule().getBuildDirectory(), "bin/kotlin/classes");
     if (!mClassOutput.exists() && !mClassOutput.mkdirs()) {
@@ -180,7 +180,7 @@ public class IncrementalKotlinCompiler extends Task<AndroidModule> {
                 .map(File::getAbsolutePath)
                 .collect(Collectors.joining(File.pathSeparator)));
         arguments.add("-Xskip-metadata-version-check");
-        arguments.add("-Xjvm-default=all");
+        arguments.add("-jvm-default=all");
 
         File javaDir = new File(getModule().getRootFile() + "/src/main/java");
         File kotlinDir = new File(getModule().getRootFile() + "/src/main/kotlin");
@@ -212,7 +212,11 @@ public class IncrementalKotlinCompiler extends Task<AndroidModule> {
         args.setSuppressWarnings(true);
         args.setJavaSourceRoots(
             javaSourceRoots.stream().map(File::getAbsolutePath).toArray(String[]::new));
-        // args.setKotlinHome(mKotlinHome.getAbsolutePath());
+        // Kotlin 2.3's computeKotlinPaths throws IllegalStateException on Android when no explicit
+        // home is provided, because compiler classes live inside the APK dex instead of a jar.
+        // The app manages the classpath itself (-no-stdlib/-no-reflect/-no-jdk), so an empty
+        // home directory is enough to let the configuration phase pass.
+        args.setKotlinHome(mKotlinHome.getAbsolutePath());
         args.setDestination(mClassOutput.getAbsolutePath());
 
         List<File> plugins = getPlugins();
